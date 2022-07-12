@@ -9,6 +9,19 @@ import edu.wpi.first.math.util.Units;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
+
+    /** Intake */
+    //CHANGE TO CORRECT NUMBERS 
+    public static final int INTAKE_LEFT_CAN_ID = 17;
+    public static final int INTAKE_RIGHT_CAN_ID = 16;
+
+    public static final int INTAKE_RIGHT_OMNI_CAN_ID = 12;
+    public static final int INTAKE_LEFT_OMNI_CAN_ID = 11;
+
+    public static final int INTAKE_PCH_ID = 15;
+    public static final int PCH_CAN_ID = 9;
+    //CHANGE TO CORRECT NUMBERS
+
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
@@ -117,6 +130,7 @@ public final class Constants {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
+        
 
     }
 
