@@ -65,6 +65,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new exampleAuto(s_Swerve);
+    boolean fieldRelative = true;
+    boolean openLoop = true;
+
+    return new AutoSwerve(s_Swerve, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop).withTimeout(2);
   }
 }
