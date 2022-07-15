@@ -10,10 +10,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.autos.AutoSwerve;
+import frc.robot.commands.TeleopSwerve;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Swerve;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,6 +25,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
+  //private final Joystick operator = new Joystick(1);
 
   /* Drive Controls */
   private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -31,10 +33,13 @@ public class RobotContainer {
   private final int rotationAxis = XboxController.Axis.kRightX.value;
 
   /* Driver Buttons */
-  private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
+  private final JoystickButton driverYButton = new JoystickButton(driver, XboxController.Button.kY.value);
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
+  public static final OI oi = new OI(); //Phase out
+	public static final Shooter shooter = new Shooter();
+	public static final Intake intake = new Intake();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -55,7 +60,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     /* Driver Buttons */
-    zeroGyro.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
+    driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
+		oi.driver_rightTrigger.whenPressed(()->shooter.spinShooterClosedLoop(4000, 1)).whenReleased(()->shooter.stop());
   }
 
   /**

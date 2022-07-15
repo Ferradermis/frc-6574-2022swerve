@@ -30,7 +30,6 @@ public class Intake extends SubsystemBase {
 	/** Creates a new Intake. */
 	public Intake() {
 		configMotors();
-
 	}
 
 	@Override
@@ -98,21 +97,21 @@ public class Intake extends SubsystemBase {
 		intakeRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
 
 		intakeLeft.setStatusFramePeriod(StatusFrame.Status_1_General, 100);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 10000);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 10000);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 10000);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 10000);
-		intakeLeft.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 10000);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 255);
+		intakeLeft.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 255);
 
 
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 10000);
-		intakeRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 255);
+		intakeRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
 
 
 		omniLeft.setIdleMode(IdleMode.kCoast);

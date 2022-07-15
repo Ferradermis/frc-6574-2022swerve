@@ -9,7 +9,6 @@ import edu.wpi.first.math.util.Units;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
-<<<<<<< Updated upstream
 
     /** Intake */
     //CHANGE TO CORRECT NUMBERS 
@@ -21,12 +20,34 @@ public final class Constants {
 
     public static final int INTAKE_PCH_ID = 15;
     public static final int PCH_CAN_ID = 9;
+
+    public static final int SHOOTER_LEFT_CAN_ID = 0;
+    public static final int SHOOTER_RIGHT_CAN_ID = 0;
+    public static final int SHOOTER_HOOD_CAN_ID = 0;
+
+    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 0;
+    public static final int BACK_STORAGE_ROLLER_CAN_ID = 0;
+
+    public static final double INTAKE_SPIN_SPEED = .75;  
+    public static final double OMNIS_SPIN_SPEED = 0.75;
+    public static final double FEEDER_INNER_SPEED = 1;
+    public static final double FEEDER_OUTER_SPEED = 1;
+    public static final double FEEDER_SHOOTING_SPEED = 0.75;
+    public static final double SHOOTER_LOW_GOAL_PERCENT_OUTPUT = 0.35;
+    public static final double SHOOTER_HIGH_GOAL_PERCENT_OUTPUT = 0.55;
+    public static final double AUTO_DRIVE_DISTANCE = 0.25;
+    public static final double SHOOTER_RESTING_VELOCITY = .25; //10 is placeholder value
+    public static final double TOPROLLER_OPEN_LOOP = .6;
+    public static final double TOPROLLER_OPEN_LOOP_LOWER_GOAL = .2;
+
+    /**Closed Loop Constants */
+    public static final double SHOOTER_VELOCITY_HIGH = 4350; //20 is placeholder value
+    public static final double INTAKE_VELOCITY = 30;
+    public static final double CLIMBER_START_POSITION = 0;
+    public static final double TOPROLLER_VELOCITY = 1000;
     //CHANGE TO CORRECT NUMBERS
 
     public static final double stickDeadband = 0.1;
-=======
-    public static final double stickDeadband = 0.15;
->>>>>>> Stashed changes
 
     public static final class Swerve {
         public static final int pigeonID = 13;
