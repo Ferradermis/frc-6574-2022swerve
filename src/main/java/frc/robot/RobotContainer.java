@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AutoSwerve;
+import frc.robot.commands.IntakeProcess;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterHood;
 import frc.robot.subsystems.Swerve;
 
 /**
@@ -40,6 +42,7 @@ public class RobotContainer {
   public static final OI oi = new OI(); //Phase out
 	public static final Shooter shooter = new Shooter();
 	public static final Intake intake = new Intake();
+  public static final ShooterHood hood = new ShooterHood();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -61,7 +64,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
-		//oi.driver_rightTrigger.whenPressed(()->shooter.spinShooterClosedLoop(4000, 1)).whenReleased(()->shooter.stop());
+		oi.driver_rightBumper.toggleWhenPressed(new IntakeProcess());
+		//oi.driver_rightTrigger.whenPressed(()->shooter.spinShooter()).whenReleased(()->shooter.stop());
+    //oi.driver_leftTrigger.whenPressed(()->hood.spinHoodOpenLoop()).whenReleased(()->hood.stop());
   }
 
   /**

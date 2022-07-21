@@ -63,8 +63,8 @@ public class Intake extends SubsystemBase {
 	}
 
 	public void spinOmnis(double speed) {
-		omniLeft.set(speed);
-		omniRight.set(-speed);
+		omniLeft.set(-speed);
+		omniRight.set(speed);
 	}
 
 	public void toggleDeploy() {
@@ -89,7 +89,7 @@ public class Intake extends SubsystemBase {
 		intakeLeft.configFactoryDefault();
 		intakeRight.configFactoryDefault();
 		intakeLeft.follow(intakeRight);
-		intakeLeft.setInverted(true);
+		intakeLeft.setInverted(false);
 		intakeLeft.setNeutralMode(NeutralMode.Coast);
 		intakeRight.setNeutralMode(NeutralMode.Coast);
 

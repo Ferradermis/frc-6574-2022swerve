@@ -22,7 +22,7 @@ public class Shooter extends SubsystemBase {
   public CANSparkMax frontStorageRoller = new CANSparkMax(Constants.FRONT_STORAGE_ROLLER_CAN_ID, MotorType.kBrushless);
   public CANSparkMax backStorageRoller = new CANSparkMax(Constants.BACK_STORAGE_ROLLER_CAN_ID, MotorType.kBrushless);
   
-  public DigitalInput storageLimitSwitch = new DigitalInput(0);
+  public DigitalInput storageLimitSwitch = new DigitalInput(3);
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -35,7 +35,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void spinShooter() {
-    shooterLeft.set(.5);
+    shooterLeft.set(-.15);
   }
 
   public void stop() {
@@ -107,7 +107,8 @@ public class Shooter extends SubsystemBase {
       //shooterRight.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 10000);
       //shooterRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
   
-    
+      backStorageRoller.setIdleMode(CANSparkMax.IdleMode.kBrake);
+      frontStorageRoller.setIdleMode(CANSparkMax.IdleMode.kBrake);
 
   }
 

@@ -7,13 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Shooter;
 
 public class IntakeProcess extends CommandBase {
   /** Creates a new IntakeProcess. */
   public IntakeProcess() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -30,12 +30,11 @@ public class IntakeProcess extends CommandBase {
     } else {
      RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);
      RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
-     if (!RobotContainer.shooter.storageLimitSwitch.get()) {
-      RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
+     //RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
+     RobotContainer.shooter.spinFrontStorage();
+     RobotContainer.shooter.spinBackStorage();
      }
-     else {
-       RobotContainer.shooter.spinFrontStorage();
-     } //Constants.OMNIS_SPIN_SPEED
+
     }
  //Constants.FEEDER_OUTER_SPEED
      //if (no color sensor sensing) {
@@ -44,8 +43,7 @@ public class IntakeProcess extends CommandBase {
       //RobotContainer.shooter.stopInner();
      //}
     
-  }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

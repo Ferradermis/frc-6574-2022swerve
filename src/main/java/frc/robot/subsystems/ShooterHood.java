@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterHood extends SubsystemBase {
-  public WPI_TalonFX hood = new WPI_TalonFX(Constants.SHOOTER_LEFT_CAN_ID);
+  public WPI_TalonFX hood = new WPI_TalonFX(Constants.SHOOTER_HOOD_CAN_ID);
   /** Creates a new ShooterHood. */
   public ShooterHood() {
-    
+    resetHood();
   }
 
   @Override
@@ -43,8 +43,16 @@ public class ShooterHood extends SubsystemBase {
     hood.set(ControlMode.Position, desiredPosition);
   }
 
-  public void resetToStart() {
+  public void stop() {
     hood.set(0);
+  }
+
+  public void resetHood() {
+    hood.setSelectedSensorPosition(0);
+  }
+
+  public void spinHoodOpenLoop() {
+    hood.set(.15);
   }
 
 } 

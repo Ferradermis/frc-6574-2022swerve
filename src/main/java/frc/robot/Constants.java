@@ -16,7 +16,7 @@ public final class Constants {
     public static final int INTAKE_RIGHT_CAN_ID = 29;
 
     public static final int INTAKE_RIGHT_OMNI_CAN_ID = 2;
-    public static final int INTAKE_LEFT_OMNI_CAN_ID = 35;
+    public static final int INTAKE_LEFT_OMNI_CAN_ID = 21; // was 35
 
     public static final int INTAKE_PCH_ID = 15;
     public static final int PCH_CAN_ID = 9;
@@ -25,11 +25,11 @@ public final class Constants {
     public static final int SHOOTER_RIGHT_CAN_ID = 25;
     public static final int SHOOTER_HOOD_CAN_ID = 27;
 
-    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 3;
-    public static final int BACK_STORAGE_ROLLER_CAN_ID = 21;
+    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 3; 
+    public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; //was 21
 
-    public static final double INTAKE_SPIN_SPEED = .75;  
-    public static final double OMNIS_SPIN_SPEED = 0.75;
+    public static final double INTAKE_SPIN_SPEED = .15;  
+    public static final double OMNIS_SPIN_SPEED = 0.15;
     public static final double FEEDER_INNER_SPEED = 1;
     public static final double FEEDER_OUTER_SPEED = 1;
     public static final double FEEDER_SHOOTING_SPEED = 0.75;
