@@ -12,21 +12,21 @@ public final class Constants {
 
     /** Intake */
     //CHANGE TO CORRECT NUMBERS 
-    public static final int INTAKE_LEFT_CAN_ID = 17;
-    public static final int INTAKE_RIGHT_CAN_ID = 16;
+    public static final int INTAKE_LEFT_CAN_ID = 28;
+    public static final int INTAKE_RIGHT_CAN_ID = 29;
 
-    public static final int INTAKE_RIGHT_OMNI_CAN_ID = 12;
-    public static final int INTAKE_LEFT_OMNI_CAN_ID = 11;
+    public static final int INTAKE_RIGHT_OMNI_CAN_ID = 2;
+    public static final int INTAKE_LEFT_OMNI_CAN_ID = 35;
 
     public static final int INTAKE_PCH_ID = 15;
     public static final int PCH_CAN_ID = 9;
 
-    public static final int SHOOTER_LEFT_CAN_ID = 0;
-    public static final int SHOOTER_RIGHT_CAN_ID = 0;
-    public static final int SHOOTER_HOOD_CAN_ID = 0;
+    public static final int SHOOTER_LEFT_CAN_ID = 26;
+    public static final int SHOOTER_RIGHT_CAN_ID = 25;
+    public static final int SHOOTER_HOOD_CAN_ID = 27;
 
-    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 0;
-    public static final int BACK_STORAGE_ROLLER_CAN_ID = 0;
+    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 3;
+    public static final int BACK_STORAGE_ROLLER_CAN_ID = 21;
 
     public static final double INTAKE_SPIN_SPEED = .75;  
     public static final double OMNIS_SPIN_SPEED = 0.75;

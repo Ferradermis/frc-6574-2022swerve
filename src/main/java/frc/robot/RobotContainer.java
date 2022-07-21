@@ -61,7 +61,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
-		oi.driver_rightTrigger.whenPressed(()->shooter.spinShooterClosedLoop(4000, 1)).whenReleased(()->shooter.stop());
+		//oi.driver_rightTrigger.whenPressed(()->shooter.spinShooterClosedLoop(4000, 1)).whenReleased(()->shooter.stop());
   }
 
   /**
