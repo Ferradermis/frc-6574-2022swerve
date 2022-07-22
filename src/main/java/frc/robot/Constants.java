@@ -25,10 +25,10 @@ public final class Constants {
     public static final int SHOOTER_RIGHT_CAN_ID = 25;
     public static final int SHOOTER_HOOD_CAN_ID = 27;
 
-    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 3; 
-    public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; //was 21
+    public static final int FRONT_STORAGE_ROLLER_CAN_ID = 30; 
+    public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; 
 
-    public static final double INTAKE_SPIN_SPEED = .15;  
+    public static final double INTAKE_SPIN_SPEED = .45;  
     public static final double OMNIS_SPIN_SPEED = 0.15;
     public static final double FEEDER_INNER_SPEED = 1;
     public static final double FEEDER_OUTER_SPEED = 1;

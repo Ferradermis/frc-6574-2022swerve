@@ -33,6 +33,7 @@ public class IntakeProcess extends CommandBase {
      //RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
      RobotContainer.shooter.spinFrontStorage();
      RobotContainer.shooter.spinBackStorage();
+     
      }
 
     }

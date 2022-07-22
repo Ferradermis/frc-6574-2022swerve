@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -19,7 +20,7 @@ public class Shooter extends SubsystemBase {
   public WPI_TalonFX shooterLeft = new WPI_TalonFX(Constants.SHOOTER_LEFT_CAN_ID);
   public WPI_TalonFX shooterRight = new WPI_TalonFX(Constants.SHOOTER_RIGHT_CAN_ID);
 
-  public CANSparkMax frontStorageRoller = new CANSparkMax(Constants.FRONT_STORAGE_ROLLER_CAN_ID, MotorType.kBrushless);
+  public WPI_TalonFX frontStorageRoller = new WPI_TalonFX(Constants.FRONT_STORAGE_ROLLER_CAN_ID);
   public CANSparkMax backStorageRoller = new CANSparkMax(Constants.BACK_STORAGE_ROLLER_CAN_ID, MotorType.kBrushless);
   
   public DigitalInput storageLimitSwitch = new DigitalInput(3);
@@ -32,12 +33,23 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("LimitSwitch", storageLimitSwitch.get());
   }
 
   public void spinShooter() {
-    shooterLeft.set(-.15);
+    shooterLeft.set(-.35);
   }
 
+  public void stopShootProcess() {
+    stop();
+    stopFrontStorage();
+    stopBackStorage();
+  }
+  public void ShootProcess() {
+    spinShooter();
+    spinFrontStorage();
+    spinBackStorage();
+  }
   public void stop() {
     shooterLeft.set(0);
   }
@@ -48,7 +60,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void spinFrontStorage() {
-    frontStorageRoller.set(.75);
+    frontStorageRoller.set(-.75);
   }
 
   public void stopFrontStorage() {
@@ -73,10 +85,12 @@ public class Shooter extends SubsystemBase {
   public void configMotors() {   
       shooterLeft.configFactoryDefault();
       shooterRight.configFactoryDefault();
+      frontStorageRoller.configFactoryDefault();
       shooterRight.follow(shooterLeft);
       //shooterLeft.setInverted(true);
       shooterLeft.setNeutralMode(NeutralMode.Coast);
       shooterRight.setNeutralMode(NeutralMode.Coast);
+      frontStorageRoller.setNeutralMode(NeutralMode.Brake);
 
       double kP = 0.2;
       double kI = 0;
@@ -108,7 +122,6 @@ public class Shooter extends SubsystemBase {
       //shooterRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
   
       backStorageRoller.setIdleMode(CANSparkMax.IdleMode.kBrake);
-      frontStorageRoller.setIdleMode(CANSparkMax.IdleMode.kBrake);
 
   }
 

@@ -89,7 +89,7 @@ public class Intake extends SubsystemBase {
 		intakeLeft.configFactoryDefault();
 		intakeRight.configFactoryDefault();
 		intakeLeft.follow(intakeRight);
-		intakeLeft.setInverted(false);
+		intakeLeft.setInverted(true);
 		intakeLeft.setNeutralMode(NeutralMode.Coast);
 		intakeRight.setNeutralMode(NeutralMode.Coast);
 
