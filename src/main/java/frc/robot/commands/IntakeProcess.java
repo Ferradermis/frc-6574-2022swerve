@@ -25,14 +25,18 @@ public class IntakeProcess extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.oi.driver_leftBumper.get()) {
-      RobotContainer.intake.spin(-1);
-    } else {
+    if (!RobotContainer.shooter.storageLimitSwitch.get()) {
+      RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);
+      RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
+      //RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
+      RobotContainer.shooter.spinFrontStorage(-.75);
+    }
+    else {
      RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);
      RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
      //RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
-     RobotContainer.shooter.spinFrontStorage();
-     RobotContainer.shooter.spinBackStorage();
+     RobotContainer.shooter.spinFrontStorage(-.75);
+     RobotContainer.shooter.spinBackStorage(.25);
      
      }
 

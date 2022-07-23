@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Shooter extends SubsystemBase {
   public WPI_TalonFX shooterLeft = new WPI_TalonFX(Constants.SHOOTER_LEFT_CAN_ID);
@@ -34,21 +35,25 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("LimitSwitch", storageLimitSwitch.get());
+    SmartDashboard.putNumber("Shooter Speed", shooterLeft.getSelectedSensorVelocity());
   }
 
   public void spinShooter() {
-    shooterLeft.set(-.35);
+    shooterLeft.set(-.55); //-.55ish was okay for tarmac shots; -.6 for past tarmac line 
   }
-
+  public void shooterRestingSpeed() {
+    shooterLeft.set(-.25);
+  }
   public void stopShootProcess() {
-    stop();
+    spinShooter();
     stopFrontStorage();
     stopBackStorage();
+    RobotContainer.hood.stop();
   }
   public void ShootProcess() {
     spinShooter();
-    spinFrontStorage();
-    spinBackStorage();
+    spinFrontStorage(-.75);
+    spinBackStorage(.5);
   }
   public void stop() {
     shooterLeft.set(0);
@@ -56,10 +61,10 @@ public class Shooter extends SubsystemBase {
 
   public void spinShooterClosedLoop(double velocity, double feederPercent) {
     shooterLeft.set(ControlMode.Velocity, 4000);
-    spinStorage();
+    spinStorage(-.75, 1);
   }
 
-  public void spinFrontStorage() {
+  public void spinFrontStorage(double frontSpeed) {
     frontStorageRoller.set(-.75);
   }
 
@@ -67,17 +72,17 @@ public class Shooter extends SubsystemBase {
     frontStorageRoller.set(0);
   }
 
-  public void spinBackStorage() {
-    backStorageRoller.set(1);
+  public void spinBackStorage(double speed) {
+    backStorageRoller.set(speed);
   }
 
   public void stopBackStorage() {
     backStorageRoller.set(0);
   }
 
-  public void spinStorage() {
-    spinFrontStorage();
-    spinBackStorage();
+  public void spinStorage(double frontSpeed, double backSpeed) {
+    spinFrontStorage(frontSpeed);
+    spinBackStorage(backSpeed);
   }
 
 

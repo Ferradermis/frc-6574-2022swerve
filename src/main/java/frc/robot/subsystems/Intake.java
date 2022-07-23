@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Intake extends SubsystemBase {
 
@@ -51,6 +52,22 @@ public class Intake extends SubsystemBase {
 
 	public void spin(double speed) {
 		intakeRight.set(-speed);
+	}
+
+	public void spinStorageForIntake() {
+		if (RobotContainer.shooter.storageLimitSwitch.get()) {
+			RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);
+			RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
+			//RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
+			RobotContainer.shooter.spinFrontStorage(-.75);
+		}
+		else {
+			RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);
+			RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
+			//RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
+			RobotContainer.shooter.spinFrontStorage(-.75);
+			RobotContainer.shooter.spinBackStorage(.5);
+		}
 	}
 
 	public void spinClosedVelocity(double speed) {

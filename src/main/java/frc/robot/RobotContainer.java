@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AutoSwerve;
 import frc.robot.commands.IntakeProcess;
 import frc.robot.commands.TeleopSwerve;
+import frc.robot.commands.ShooterCommands.BasicShooterCycle;
+import frc.robot.commands.ShooterCommands.SetHoodToPosition;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterHood;
@@ -65,8 +67,9 @@ public class RobotContainer {
     /* Driver Buttons */
     driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
 		oi.driver_rightBumper.toggleWhenPressed(new IntakeProcess());
-		oi.driver_rightTrigger.whenPressed(()->shooter.ShootProcess()).whenReleased(()->shooter.stopShootProcess());
-    oi.driver_aButton.whenPressed(()->hood.setPosition(-7800)).whenReleased(()->hood.stop());
+		//oi.driver_rightTrigger.whenPressed(()->shooter.ShootProcess()).whenReleased(()->shooter.stopShootProcess());
+    oi.driver_aButton.whileHeld(new SetHoodToPosition(-4500)).whenReleased(()->hood.stop());
+    oi.driver_rightTrigger.whileHeld(new BasicShooterCycle()).whenReleased(()->shooter.stopShootProcess());
     //oi.driver_leftTrigger.whenPressed(()->hood.spinHoodOpenLoop()).whenReleased(()->hood.stop());
   }
 
