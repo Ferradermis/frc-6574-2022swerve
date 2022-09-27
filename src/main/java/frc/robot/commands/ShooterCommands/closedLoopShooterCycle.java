@@ -10,17 +10,18 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class BasicShooterCycle extends SequentialCommandGroup {
-  /** Creates a new BasicShooterCycle. */
-  public BasicShooterCycle() {
+public class closedLoopShooterCycle extends SequentialCommandGroup {
+  /** Creates a new closedLoopShooterCycle. */
+  public closedLoopShooterCycle() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-    new SetHoodToPosition(-7800), //-7800 for auto and tarmac shots, -2000 for close up
-    new WaitCommand (.25),
-    new SpinShooter(),
-    new WaitCommand(.55),
-    new SpinStorageForShooting()
-    );
+      new SetHoodToPosition(-7800), //-7800 for auto and tarmac shots, -2000 for close up
+      new WaitCommand (.25),
+      new SpinShooterClosedLoop(),
+      new WaitCommand(.55),
+      new SpinStorageForShooting()
+      );
+  
   }
 }

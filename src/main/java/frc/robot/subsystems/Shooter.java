@@ -45,7 +45,7 @@ public class Shooter extends SubsystemBase {
     shooterLeft.set(-.25);
   }
   public void stopShootProcess() {
-    spinShooter();
+    stop();
     stopFrontStorage();
     stopBackStorage();
     RobotContainer.hood.stop();
@@ -57,10 +57,11 @@ public class Shooter extends SubsystemBase {
   }
   public void stop() {
     shooterLeft.set(0);
+    //shooterRight.set(0);
   }
 
-  public void spinShooterClosedLoop(double velocity, double feederPercent) {
-    shooterLeft.set(ControlMode.Velocity, 4000);
+  public void spinShooterClosedLoop(double velocity) {
+    shooterLeft.set(ControlMode.Velocity, velocity);
     spinStorage(-.75, 1);
   }
 
@@ -97,9 +98,9 @@ public class Shooter extends SubsystemBase {
       shooterRight.setNeutralMode(NeutralMode.Coast);
       frontStorageRoller.setNeutralMode(NeutralMode.Brake);
 
-      double kP = 0.2;
+      double kP = 0.4;
       double kI = 0;
-      double kD = 0;
+      double kD = 0.15;
       double kF = 0.055;
       shooterLeft.config_kP(0, kP);
       shooterLeft.config_kF(0, kF);
