@@ -34,8 +34,8 @@ public class OI {
 	public Button driver_rightBumper = new JoystickButton(driver, 6);
 	public Button driver_leftTrigger = new XBoxLeftTrigger(driver);
 	public Button driver_rightTrigger = new XBoxRightTrigger(driver);
-	public static Button driver_backButton = new JoystickButton(driver, 7);
-	public static Button driver_startButton = new JoystickButton(driver, 8);
+	public Button driver_backButton = new JoystickButton(driver, 7);
+	public Button driver_startButton = new JoystickButton(driver, 8);
 	public POVButton driver_upDpad = new POVButton(driver, 0);
 	public POVButton driver_rightDpad = new POVButton(driver, 90);
 	public POVButton driver_downDpad = new POVButton(driver, 180);

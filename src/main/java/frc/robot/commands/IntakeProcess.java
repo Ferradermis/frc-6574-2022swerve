@@ -30,6 +30,7 @@ public class IntakeProcess extends CommandBase {
       RobotContainer.intake.spinOmnis(Constants.OMNIS_SPIN_SPEED);
       //RobotContainer.shooter.spinStorage(); //Constants.INTAKE_SPIN_SPEED
       RobotContainer.shooter.spinFrontStorage(-.75);
+      RobotContainer.shooter.stopBackStorage();
     }
     else {
      //RobotContainer.intake.spin(Constants.INTAKE_SPIN_SPEED);

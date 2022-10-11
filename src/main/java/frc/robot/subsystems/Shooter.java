@@ -69,6 +69,10 @@ public class Shooter extends SubsystemBase {
     frontStorageRoller.set(-.75);
   }
 
+  public void spinFrontStorageBackward (double frontSpeed) {
+    frontStorageRoller.set(frontSpeed);
+  }
+
   public void stopFrontStorage() {
     frontStorageRoller.set(0);
   }

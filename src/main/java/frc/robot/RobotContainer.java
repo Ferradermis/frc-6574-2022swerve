@@ -13,10 +13,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AutoSwerve;
 import frc.robot.commands.IntakeProcess;
 import frc.robot.commands.TeleopSwerve;
-import frc.robot.commands.ShooterCommands.BasicShooterCycle;
-import frc.robot.commands.ShooterCommands.SetHoodToPosition;
 import frc.robot.commands.ShooterCommands.ZeroHood;
 import frc.robot.commands.ShooterCommands.closedLoopShooterCycle;
+import frc.robot.commands.ShooterCommands.closedLoopShooterCycleShort;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterHood;
@@ -70,10 +69,12 @@ public class RobotContainer {
     /* Driver Buttons */
     driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
 		oi.driver_rightBumper.toggleWhenPressed(new IntakeProcess());
-    oi.driver_aButton.whileHeld(new SetHoodToPosition(-4500)).whenReleased(()->hood.stop());
-    oi.driver_rightTrigger.whileHeld(new BasicShooterCycle()).whenReleased(()->shooter.stopShootProcess());
+    //oi.driver_aButton.whileHeld(new SetHoodToPosition(-4500)).whenReleased(()->hood.stop());
+    oi.driver_rightTrigger.whileHeld(new closedLoopShooterCycleShort()).whenReleased(()->shooter.stopShootProcess());
     oi.driver_leftTrigger.whileHeld (new closedLoopShooterCycle()).whenReleased(()->shooter.stopShootProcess());
-    oi.driver_bButton.whileHeld(new ZeroHood()).whenReleased(()->hood.stop());
+    oi.driver_bButton.whileHeld(new ZeroHood());
+    oi.driver_backButton.whenPressed(new InstantCommand(()->hood.stopZero()));
+    oi.driver_aButton.whileHeld(new InstantCommand(() -> shooter.spinFrontStorageBackward(.25))).whenReleased(()->shooter.stopShootProcess());
   }
 
   /**

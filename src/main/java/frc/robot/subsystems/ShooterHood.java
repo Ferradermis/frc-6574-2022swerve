@@ -27,12 +27,12 @@ public class ShooterHood extends SubsystemBase {
 
   public void configMotors() {   
     hood.configFactoryDefault();
-    hood.setNeutralMode(NeutralMode.Coast); //CHANGE TO BRAKE ONCE ENCODER RANGE IS DETERMINED
+    hood.setNeutralMode(NeutralMode.Brake);
 
-    double kP = 1.2;
-    double kI = 0;
-    double kD = .01;
-    double kF = 0; //was .05
+    double kP = 1;
+    double kI = 0.25;
+    double kD = 0;
+    double kF = 0.5; //was .05
     hood.config_kP(0, kP);
     hood.config_kF(0, kF);
     hood.config_kI(0, kI);
@@ -45,6 +45,11 @@ public class ShooterHood extends SubsystemBase {
 
   public void stop() {
     hood.set(0);
+  }
+
+  public void stopZero() {
+    hood.set(0);
+    resetHood();
   }
 
   public void resetHood() {

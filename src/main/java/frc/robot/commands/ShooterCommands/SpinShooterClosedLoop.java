@@ -21,7 +21,7 @@ public class SpinShooterClosedLoop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter.spinShooterClosedLoop(8000);
+    RobotContainer.shooter.spinShooterClosedLoop(-5000);
 
   }
 
