@@ -2,16 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.ShooterCommands;
+package frc.robot.commands.StorageCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class SpinShooter extends CommandBase {
-  /** Creates a new SpinShooter. */
-  public SpinShooter() {
+public class SpinStorageForShooting extends CommandBase {
+  /** Creates a new SpinStorageForShooting. */
+  public SpinStorageForShooting() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter);
+
   }
 
   // Called when the command is initially scheduled.
@@ -21,13 +22,15 @@ public class SpinShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter.ShootProcess();
+    RobotContainer.shooter.spinBackStorage(1);
+    RobotContainer.shooter.spinFrontStorage(-1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.stop();
+    RobotContainer.shooter.stopFrontStorage();
+    RobotContainer.shooter.stopBackStorage();
   }
 
   // Returns true when the command should end.

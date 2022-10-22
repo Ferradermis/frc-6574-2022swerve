@@ -11,10 +11,8 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
 
     /** Intake */
-    //CHANGE TO CORRECT NUMBERS 
     public static final int INTAKE_LEFT_CAN_ID = 28;
     public static final int INTAKE_RIGHT_CAN_ID = 29;
-
     public static final int INTAKE_RIGHT_OMNI_CAN_ID = 2;
     public static final int INTAKE_LEFT_OMNI_CAN_ID = 21; // was 35
 
@@ -27,6 +25,13 @@ public final class Constants {
 
     public static final int FRONT_STORAGE_ROLLER_CAN_ID = 30; 
     public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; 
+
+    public static final int CLIMBER_RIGHT_CAN_ID = -1;
+    public static final int CLIMBER_LEFT_CAN_ID = -1;
+
+    public static final int CLIMBER_INITIAL_HOOK_PCH_ID = 7;
+    public static final int CLIMBER_SECOND_HOOK_PCH_ID = 6;
+    public static final int CLIMBER_ELEVATOR_PCH_ID = 14;
 
     public static final double INTAKE_SPIN_SPEED = .35;  
     public static final double OMNIS_SPIN_SPEED = 0.15;

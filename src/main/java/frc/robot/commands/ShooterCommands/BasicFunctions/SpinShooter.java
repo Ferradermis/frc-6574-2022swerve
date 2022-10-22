@@ -2,16 +2,16 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.ShooterCommands;
+package frc.robot.commands.ShooterCommands.BasicFunctions;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class SpinShooterClosedLoop extends CommandBase {
-  /** Creates a new SpinShooterClosedLoop. */
-  public SpinShooterClosedLoop() {
-    addRequirements(RobotContainer.shooter);
+public class SpinShooter extends CommandBase {
+  /** Creates a new SpinShooter. */
+  public SpinShooter() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -21,13 +21,14 @@ public class SpinShooterClosedLoop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter.spinShooterClosedLoop(-5000);
-
+    RobotContainer.shooter.ShootProcess();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.shooter.stop();
+  }
 
   // Returns true when the command should end.
   @Override
