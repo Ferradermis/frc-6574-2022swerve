@@ -18,10 +18,10 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Shooter extends SubsystemBase {
-  public WPI_TalonFX shooterLeft = new WPI_TalonFX(Constants.SHOOTER_LEFT_CAN_ID);
-  public WPI_TalonFX shooterRight = new WPI_TalonFX(Constants.SHOOTER_RIGHT_CAN_ID);
+  public WPI_TalonFX shooterLeft = new WPI_TalonFX(Constants.SHOOTER_LEFT_CAN_ID, "CANIvore6574");
+  public WPI_TalonFX shooterRight = new WPI_TalonFX(Constants.SHOOTER_RIGHT_CAN_ID,"CANIvore6574");
 
-  public WPI_TalonFX frontStorageRoller = new WPI_TalonFX(Constants.FRONT_STORAGE_ROLLER_CAN_ID);
+  public WPI_TalonFX frontStorageRoller = new WPI_TalonFX(Constants.FRONT_STORAGE_ROLLER_CAN_ID, "CANIvore6574");
   public CANSparkMax backStorageRoller = new CANSparkMax(Constants.BACK_STORAGE_ROLLER_CAN_ID, MotorType.kBrushless);
   
   public DigitalInput storageLimitSwitch = new DigitalInput(3);

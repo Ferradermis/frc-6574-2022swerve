@@ -60,4 +60,12 @@ public class ShooterHood extends SubsystemBase {
     hood.set(.15);
   }
 
+  public double getHoodCurrent() {
+    double hoodCurrent = hood.getSupplyCurrent();
+    return hoodCurrent;
+  }
+
+  public void resetHoodAndZero() {
+    
+  }
 } 
