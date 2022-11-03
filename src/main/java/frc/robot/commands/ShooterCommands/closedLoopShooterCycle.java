@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.HoodCommands.SetHoodToPosition;
 import frc.robot.commands.ShooterCommands.BasicFunctions.SpinShooterClosedLoop;
+import frc.robot.commands.StorageCommands.SpinFrontStorageBackward;
 import frc.robot.commands.StorageCommands.SpinStorageForShooting;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -19,12 +20,11 @@ public class closedLoopShooterCycle extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new SetHoodToPosition(-7800), //-7800 for auto and tarmac shots, -2000 for close up
-      new WaitCommand (.25),
+      new SetHoodToPosition(-7850), //-7800 for auto and tarmac shots, -2000 for close up
       new SpinShooterClosedLoop(),
-      new WaitCommand(.55),
+      new SpinFrontStorageBackward(),
+      new WaitCommand (.25),
       new SpinStorageForShooting()
       );
-  
   }
 }

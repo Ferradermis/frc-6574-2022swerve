@@ -26,6 +26,8 @@ public class Shooter extends SubsystemBase {
   
   public DigitalInput storageLimitSwitch = new DigitalInput(3);
 
+  public static double shooterSpeed = -7500;
+
   /** Creates a new Shooter. */
   public Shooter() {
     configMotors();
@@ -36,33 +38,37 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("LimitSwitch", storageLimitSwitch.get());
     SmartDashboard.putNumber("Shooter Speed", shooterLeft.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Right Shooter", shooterRight.getSelectedSensorVelocity());
   }
 
   public void spinShooter() {
     shooterLeft.set(-.55); //-.55ish was okay for tarmac shots; -.6 for past tarmac line 
   }
+
   public void shooterRestingSpeed() {
     shooterLeft.set(-.25);
   }
-  public void stopShootProcess() {
-    stop();
-    stopFrontStorage();
-    stopBackStorage();
-    RobotContainer.hood.stop();
-  }
-  public void ShootProcess() {
-    spinShooter();
-    spinFrontStorage(-.75);
-    spinBackStorage(.5);
-  }
+
   public void stop() {
     shooterLeft.set(0);
     //shooterRight.set(0);
   }
 
+  public void stopShootProcess() {
+    shooterRestingSpeed();
+    stopFrontStorage();
+    stopBackStorage();
+    RobotContainer.hood.stop();
+  }
+
+  public void ShootProcess() {
+    spinShooter();
+    spinFrontStorage(-.75);
+    spinBackStorage(.5);
+  }
+ 
   public void spinShooterClosedLoop(double velocity) {
     shooterLeft.set(ControlMode.Velocity, velocity);
-    spinStorage(-.75, 1);
   }
 
   public void spinFrontStorage(double frontSpeed) {
@@ -98,22 +104,25 @@ public class Shooter extends SubsystemBase {
     //return (shooterLeft.getSelectedSensorVelocity() >= (SmartDashboard.getNumber("Entered Shooter Velocity", 0) - tolerance));
   }
 
-
-
   public void configMotors() {   
       shooterLeft.configFactoryDefault();
       shooterRight.configFactoryDefault();
       frontStorageRoller.configFactoryDefault();
+
       shooterRight.follow(shooterLeft);
-      //shooterLeft.setInverted(true);
       shooterLeft.setNeutralMode(NeutralMode.Coast);
+      shooterLeft.configClosedloopRamp(.5, 0);
+      //shooterLeft.setSensorPhase(true);
+      
       shooterRight.setNeutralMode(NeutralMode.Coast);
       frontStorageRoller.setNeutralMode(NeutralMode.Brake);
 
-      double kP = 0.4;
+    
+
+      double kP = 0.135;
       double kI = 0;
-      double kD = 0.15;
-      double kF = 0.055;
+      double kD = 0.1;
+      double kF = 0.07; //0.055
       shooterLeft.config_kP(0, kP);
       shooterLeft.config_kF(0, kF);
       shooterLeft.config_kI(0, kI);
@@ -122,20 +131,20 @@ public class Shooter extends SubsystemBase {
       //shooterLeft.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
       //shooterRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
   
-      shooterLeft.setStatusFramePeriod(StatusFrame.Status_1_General, 100);
-      shooterLeft.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
-      shooterLeft.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
-      shooterLeft.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
-      shooterLeft.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
+      //shooterLeft.setStatusFramePeriod(StatusFrame.Status_1_General, 100);
+      //shooterLeft.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
+      //shooterLeft.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
+      //shooterLeft.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
+      //shooterLeft.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
       //shooterLeft.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 10000);
       //shooterLeft.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 10000);
   
 
-      shooterRight.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
-      shooterRight.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
-      shooterRight.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
-      shooterRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
-      shooterRight.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 255);
+      //shooterRight.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);
+      //shooterRight.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 255);
+      //shooterRight.setStatusFramePeriod(StatusFrame.Status_10_MotionMagic, 255);
+      //shooterRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 255);
+      //shooterRight.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 255);
       //shooterRight.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 10000);
       //shooterRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 10000);
   

@@ -6,8 +6,11 @@ package frc.robot.commands.ShooterCommands.BasicFunctions;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Shooter;
 
 public class SpinShooterClosedLoop extends CommandBase {
+
+  boolean interrupted = false;
   /** Creates a new SpinShooterClosedLoop. */
   public SpinShooterClosedLoop() {
     addRequirements(RobotContainer.shooter);
@@ -21,8 +24,12 @@ public class SpinShooterClosedLoop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter.spinShooterClosedLoop(-5000);
+    RobotContainer.shooter.spinShooterClosedLoop(Shooter.shooterSpeed);
 
+    /*if (RobotContainer.shooter.shooterReady(Shooter.shooterSpeed)) {
+      interrupted = true;
+    } 
+    */
   }
 
   // Called once the command ends or is interrupted.
@@ -32,6 +39,7 @@ public class SpinShooterClosedLoop extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
-  }
+    return RobotContainer.shooter.shooterReady(Shooter.shooterSpeed);
+    //return interrupted && !RobotContainer.oi.operator_rightTrigger.get();
+    }
 }

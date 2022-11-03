@@ -13,8 +13,8 @@ public final class Constants {
     /** Intake */
     public static final int INTAKE_LEFT_CAN_ID = 28;
     public static final int INTAKE_RIGHT_CAN_ID = 29;
-    public static final int INTAKE_RIGHT_OMNI_CAN_ID = 2;
-    public static final int INTAKE_LEFT_OMNI_CAN_ID = 21; // was 35
+    public static final int INTAKE_RIGHT_OMNI_CAN_ID = 23;
+    public static final int INTAKE_LEFT_OMNI_CAN_ID = 21; 
     public static final int FRONT_STORAGE_ROLLER_CAN_ID = 30; 
     public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; 
     public static final int SHOOTER_LEFT_CAN_ID = 26;
@@ -27,12 +27,12 @@ public final class Constants {
     public static final int PCH_CAN_ID = 9;
 
 
-    public static final int CLIMBER_INITIAL_HOOK_PCH_ID = 7;
-    public static final int CLIMBER_SECOND_HOOK_PCH_ID = 6;
-    public static final int CLIMBER_ELEVATOR_PCH_ID = 14;
+    public static final int CLIMBER_INITIAL_HOOK_PCH_ID = 8;
+    public static final int CLIMBER_SECOND_HOOK_PCH_ID = 9;
+    public static final int CLIMBER_ELEVATOR_PCH_ID = 14; 
 
-    public static final double INTAKE_SPIN_SPEED = .35;  
-    public static final double OMNIS_SPIN_SPEED = 0.15;
+    public static final double INTAKE_SPIN_SPEED = .25;  
+    public static final double OMNIS_SPIN_SPEED = 0.55;
     public static final double FEEDER_INNER_SPEED = 1;
     public static final double FEEDER_OUTER_SPEED = 1;
     public static final double FEEDER_SHOOTING_SPEED = 0.75;
@@ -50,7 +50,7 @@ public final class Constants {
     public static final double TOPROLLER_VELOCITY = 1000;
     //CHANGE TO CORRECT NUMBERS
 
-    public static final double stickDeadband = 0.1;
+    public static final double stickDeadband = 0.03;
 
     public static final class Swerve {
         public static final int pigeonID = 13;

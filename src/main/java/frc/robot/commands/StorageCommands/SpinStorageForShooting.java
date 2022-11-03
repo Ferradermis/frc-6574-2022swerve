@@ -22,8 +22,8 @@ public class SpinStorageForShooting extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter.spinBackStorage(1);
-    RobotContainer.shooter.spinFrontStorage(-1);
+    RobotContainer.shooter.spinBackStorage(.5);
+    RobotContainer.shooter.spinFrontStorage(-.5);
   }
 
   // Called once the command ends or is interrupted.

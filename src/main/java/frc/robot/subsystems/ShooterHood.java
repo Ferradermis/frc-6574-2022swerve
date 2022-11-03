@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterHood extends SubsystemBase {
-  public WPI_TalonFX hood = new WPI_TalonFX(Constants.SHOOTER_HOOD_CAN_ID);
+  public WPI_TalonFX hood = new WPI_TalonFX(Constants.SHOOTER_HOOD_CAN_ID, "rio");
   /** Creates a new ShooterHood. */
   public ShooterHood() {
     resetHood();
@@ -28,6 +29,8 @@ public class ShooterHood extends SubsystemBase {
   public void configMotors() {   
     hood.configFactoryDefault();
     hood.setNeutralMode(NeutralMode.Brake);
+    //TalonFXInvertType kInvertType = TalonFXInvertType.CounterClockwise;
+    //hood.setInverted(kInvertType);
 
     double kP = 1;
     double kI = 0.25;

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AutoSwerve;
 import frc.robot.commands.IntakeProcess;
+import frc.robot.commands.LimelightAlign;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.ClimberCommands.CloseInitialHook;
 import frc.robot.commands.ClimberCommands.DetachInitialHook;
@@ -24,6 +25,7 @@ import frc.robot.commands.ShooterCommands.closedLoopShooterCycle;
 import frc.robot.commands.ShooterCommands.closedLoopShooterCycleShort;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterHood;
 import frc.robot.subsystems.Swerve;
@@ -54,6 +56,8 @@ public class RobotContainer {
 	public static final Intake intake = new Intake();
   public static final ShooterHood hood = new ShooterHood();
   public static final Climber climber = new Climber();
+  public static final Limelight limelight = new Limelight();
+
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -80,12 +84,9 @@ public class RobotContainer {
     oi.driver_rightTrigger.whileHeld(new closedLoopShooterCycleShort()).whenReleased(()->shooter.stopShootProcess());
     oi.driver_leftTrigger.whileHeld (new closedLoopShooterCycle()).whenReleased(()->shooter.stopShootProcess());
     oi.driver_bButton.whileHeld(new ZeroHood());
-    oi.driver_backButton.whenPressed(new InstantCommand(()->hood.stopZero()));
     oi.driver_aButton.toggleWhenPressed(new ToggleElevator());
 
-    /*Test Commands */
-    //oi.driver_aButton.whileHeld(new SetHoodToPosition(-4500)).whenReleased(()->hood.stop());
-    //oi.driver_aButton.whileHeld(new InstantCommand(() -> shooter.spinFrontStorageBackward(.25))).whenReleased(()->shooter.stopShootProcess());
+    oi.driver_xButton.whileHeld(new LimelightAlign(s_Swerve));
 
 
     /* Operator Buttons */

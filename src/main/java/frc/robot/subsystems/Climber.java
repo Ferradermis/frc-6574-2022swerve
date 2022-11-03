@@ -21,8 +21,8 @@ import frc.robot.RobotContainer;
 //Double hook, firstHook, secondHook
 public class Climber extends SubsystemBase {
 	
-	public WPI_TalonFX climberRight = new WPI_TalonFX(Constants.CLIMBER_RIGHT_CAN_ID);
-	public WPI_TalonFX climberLeft = new WPI_TalonFX(Constants.CLIMBER_LEFT_CAN_ID);
+	public WPI_TalonFX climberRight = new WPI_TalonFX(Constants.CLIMBER_RIGHT_CAN_ID, "rio");
+	public WPI_TalonFX climberLeft = new WPI_TalonFX(Constants.CLIMBER_LEFT_CAN_ID, "rio");
 
 	double currentLimit = 65; //amps
 	double currentLimitThreshold = 65; //amps
@@ -48,7 +48,7 @@ public class Climber extends SubsystemBase {
 		//SmartDashboard.putNumber("Climber Current", climberRight.getSupplyCurrent());
 
 		
-		spin(.85 * RobotContainer.oi.getOperatorLeftY());
+		spin(RobotContainer.oi.getOperatorLeftY());
 		}
 	
 
@@ -58,6 +58,7 @@ public class Climber extends SubsystemBase {
 	//else {
 	public void spin(double speed) {
 		climberRight.set(-speed); 
+		climberLeft.set(speed);
 	}
 
 	public void hold() {
@@ -134,8 +135,8 @@ public class Climber extends SubsystemBase {
 		climberLeft.setNeutralMode(NeutralMode.Brake);
 
 		/**CTRE documentation says SupplyCurrentLimit is for avoiding the tripping of breakers*/
-		climberLeft.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));
-		climberRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));
+		//climberLeft.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));
+		//climberRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));
 		/**CTRE documentation says StatorCurrentLimit is for limiting acceleration/torque or heat generation*/
 		//climberLeft.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));
 		//climberRight.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, currentLimit, currentLimitThreshold, currentLimitThresholdTime));

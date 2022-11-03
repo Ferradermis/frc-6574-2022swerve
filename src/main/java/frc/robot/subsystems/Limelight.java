@@ -8,9 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.LimelightAlign;
 
 
 /**
@@ -19,6 +21,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Limelight extends SubsystemBase {
 
     public static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
+    public static NetworkTableEntry tx = limelight.getEntry("tx");
+    public static NetworkTableEntry ty = limelight.getEntry("ty");
+    static double x;
+    static double y;
 
     public Limelight() {
         ledOn();
@@ -26,13 +32,19 @@ public class Limelight extends SubsystemBase {
 
     @Override
     public void periodic() {
+        x = tx.getDouble(0.0);
+        y = ty.getDouble(0.0);
+
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean("Limelight has target?", hasTarget());
         SmartDashboard.putBoolean("Limelight aimed at target?", aimedAtTarget());
-        // SmartDashboard.putNumber("Limelight X", getAngleX());
+        SmartDashboard.putNumber("Limelight X", getAngleX());
+
+        SmartDashboard.putNumber("LimelightX", x);
+        SmartDashboard.putNumber("LimelightY", y);
         // SmartDashboard.putNumber("Limelight Y", getAngleY());
         // SmartDashboard.putNumber("Limelight Y", getSkew());
-        SmartDashboard.putNumber("Limelight Pipeline:", limelight.getEntry("pipeline").getDouble(3));
+        SmartDashboard.putNumber("Limelight Pipeline:", limelight.getEntry("pipeline").getDouble(0));
 
     }
 
@@ -72,7 +84,7 @@ public class Limelight extends SubsystemBase {
      *         to 29.8)
      */
     public static double getAngleX() {
-        return limelight.getEntry("tx").getDouble(0);
+        return x;
     }
 
     /**
@@ -111,8 +123,8 @@ public class Limelight extends SubsystemBase {
         if (hasTarget()) {
             // return Math.abs(getAngleX() - (AimTurret.threshold + AimTurret.offset)) <=
             // tolerance;
-            //return (Math.abs(getAngleX()) <= AimTurret.threshold); THIS LINE SHOULD BE USED, BUT INSTEAD OF AimTurret.threshold IT SHOULD BE FOR DRIVETRAIN
-            return true;
+            return (Math.abs(getAngleX()) <= LimelightAlign.threshold); //THIS LINE SHOULD BE USED, BUT INSTEAD OF AimTurret.threshold IT SHOULD BE FOR DRIVETRAIN
+            //return true;
         } else {
             return false;
         }

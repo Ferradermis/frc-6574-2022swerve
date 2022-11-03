@@ -22,7 +22,7 @@ public class BasicShooterCycle extends SequentialCommandGroup {
     new SetHoodToPosition(-7800), //-7800 for auto and tarmac shots, -2000 for close up
     new WaitCommand (.25),
     new SpinShooter(),
-    new WaitCommand(.55),
+    new WaitCommand(.55), //replace with shooterReady logic
     new SpinStorageForShooting()
     );
   }
