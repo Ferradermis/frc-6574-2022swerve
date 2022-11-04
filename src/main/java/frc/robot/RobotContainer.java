@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AutoSwerve;
+import frc.robot.autos.TwoBallAuto;
 import frc.robot.commands.IntakeProcess;
 import frc.robot.commands.LimelightAlign;
 import frc.robot.commands.TeleopSwerve;
@@ -104,9 +105,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    boolean fieldRelative = true;
+    boolean fieldRelative = false;
     boolean openLoop = true;
 
-    return new AutoSwerve(s_Swerve, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop).withTimeout(2);
+    return new TwoBallAuto(s_Swerve);
   }
 }

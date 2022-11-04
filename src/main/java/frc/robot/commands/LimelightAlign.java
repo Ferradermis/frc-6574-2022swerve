@@ -17,8 +17,8 @@ public class LimelightAlign extends CommandBase {
   private Swerve s_Swerve;
   private Translation2d translation;
 
-  public static double turnKP = .3;
-  public static double simpleFF = 0; //CHANGE ASAP, GET DECENT VALUE
+  public static double turnKP = .33;
+  public static double simpleFF = .05; //CHANGE ASAP, GET DECENT VALUE
   public static double threshold = .75; //REDUCE IF POSSIBLE
   public static double offset = 0;
 
@@ -42,7 +42,7 @@ public class LimelightAlign extends CommandBase {
     double angleX = Limelight.getAngleX();
 
     double yAxis = 0;
-    double xAxis = angleX * turnKP;
+    double xAxis = (angleX * turnKP);
     translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed); //Constants.Swerve.maxSpeed
     SmartDashboard.putNumber("Angle Error Limelight", angleX * turnKP);
     if (Limelight.hasTarget()) {

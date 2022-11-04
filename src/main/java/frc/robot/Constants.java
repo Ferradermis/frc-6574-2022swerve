@@ -50,7 +50,7 @@ public final class Constants {
     public static final double TOPROLLER_VELOCITY = 1000;
     //CHANGE TO CORRECT NUMBERS
 
-    public static final double stickDeadband = 0.03;
+    public static final double stickDeadband = 0.04;
 
     public static final class Swerve {
         public static final int pigeonID = 13;

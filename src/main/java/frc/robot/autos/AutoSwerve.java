@@ -14,14 +14,14 @@ public class AutoSwerve extends CommandBase {
     private boolean openLoop;
     
     private Swerve s_Swerve;
-    private int translationAxis;
-    private int strafeAxis;
-    private int rotationAxis;
+    private double translationAxis;
+    private double strafeAxis;
+    private double rotationAxis;
 
     /**
      * Driver control
      */
-    public AutoSwerve(Swerve s_Swerve, int translationAxis, int strafeAxis, int rotationAxis, boolean fieldRelative, boolean openLoop) {
+    public AutoSwerve(Swerve s_Swerve, double translationAxis, double strafeAxis, double rotationAxis, boolean fieldRelative, boolean openLoop) {
         this.s_Swerve = s_Swerve;
         addRequirements(s_Swerve);
 
@@ -46,5 +46,15 @@ public class AutoSwerve extends CommandBase {
         translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed);
         rotation = rAxis * Constants.Swerve.maxAngularVelocity;
         s_Swerve.drive(translation, rotation, fieldRelative, openLoop);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+
+    }
+
+    @Override
+    public boolean isFinished() {
+        return true;
     }
 }
