@@ -34,7 +34,7 @@ public class AutoSwerve extends CommandBase {
     
     @Override
     public void execute() {
-        double yAxis = -.25;
+        double yAxis = translationAxis;
         double xAxis = 0;
         double rAxis = 0;
         

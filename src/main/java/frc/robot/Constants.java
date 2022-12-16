@@ -17,7 +17,7 @@ public final class Constants {
     public static final int INTAKE_LEFT_OMNI_CAN_ID = 21; 
     public static final int FRONT_STORAGE_ROLLER_CAN_ID = 30; 
     public static final int BACK_STORAGE_ROLLER_CAN_ID = 35; 
-    public static final int SHOOTER_LEFT_CAN_ID = 26;
+    public static final int SHOOTER_LEFT_CAN_ID = 13;
     public static final int SHOOTER_RIGHT_CAN_ID = 25;
     public static final int SHOOTER_HOOD_CAN_ID = 27;
     public static final int CLIMBER_RIGHT_CAN_ID = 36;
@@ -31,8 +31,8 @@ public final class Constants {
     public static final int CLIMBER_SECOND_HOOK_PCH_ID = 9;
     public static final int CLIMBER_ELEVATOR_PCH_ID = 14; 
 
-    public static final double INTAKE_SPIN_SPEED = .25;  
-    public static final double OMNIS_SPIN_SPEED = 0.55;
+    public static final double INTAKE_SPIN_SPEED = .75;  
+    public static final double OMNIS_SPIN_SPEED = 0.65;
     public static final double FEEDER_INNER_SPEED = 1;
     public static final double FEEDER_OUTER_SPEED = 1;
     public static final double FEEDER_SHOOTING_SPEED = 0.75;
@@ -62,7 +62,7 @@ public final class Constants {
         public static final double wheelDiameter = Units.inchesToMeters(3.94);
         public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-        public static final double openLoopRamp = 0.25;
+        public static final double openLoopRamp = 0.6;
         public static final double closedLoopRamp = 0.0;
 
         public static final double driveGearRatio = (8.16 / 1.0); //6.86:1

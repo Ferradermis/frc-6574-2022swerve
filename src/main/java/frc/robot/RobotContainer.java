@@ -6,11 +6,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.AutoSwerve;
 import frc.robot.autos.TwoBallAuto;
 import frc.robot.commands.IntakeProcess;
 import frc.robot.commands.LimelightAlign;
@@ -22,8 +22,10 @@ import frc.robot.commands.ClimberCommands.LowerClimberElevator;
 import frc.robot.commands.ClimberCommands.RaiseClimberElevator;
 import frc.robot.commands.ClimberCommands.ToggleElevator;
 import frc.robot.commands.HoodCommands.ZeroHood;
+import frc.robot.commands.ShooterCommands.BasicShooterCycle;
 import frc.robot.commands.ShooterCommands.closedLoopShooterCycle;
 import frc.robot.commands.ShooterCommands.closedLoopShooterCycleShort;
+import frc.robot.commands.StorageCommands.SpinStorageForSpitting;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
@@ -58,6 +60,8 @@ public class RobotContainer {
   public static final ShooterHood hood = new ShooterHood();
   public static final Climber climber = new Climber();
   public static final Limelight limelight = new Limelight();
+  public static final PneumaticHub pch = new PneumaticHub(Constants.PCH_CAN_ID);
+
 
 
 
@@ -66,7 +70,6 @@ public class RobotContainer {
     boolean fieldRelative = true;
     boolean openLoop = true;
     s_Swerve.setDefaultCommand(new TeleopSwerve(s_Swerve, driver, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop));
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -82,8 +85,8 @@ public class RobotContainer {
     /* Driver Buttons */
     driverYButton.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
 		oi.driver_rightBumper.toggleWhenPressed(new IntakeProcess());
-    oi.driver_rightTrigger.whileHeld(new closedLoopShooterCycleShort()).whenReleased(()->shooter.stopShootProcess());
-    oi.driver_leftTrigger.whileHeld (new closedLoopShooterCycle()).whenReleased(()->shooter.stopShootProcess());
+    oi.driver_rightTrigger.whileHeld(new SpinStorageForSpitting()).whenReleased(()->shooter.stopShootProcess());
+    oi.driver_leftTrigger.whileHeld (new closedLoopShooterCycleShort()).whenReleased(()->shooter.stopShootProcess());
     oi.driver_bButton.whileHeld(new ZeroHood());
     oi.driver_aButton.toggleWhenPressed(new ToggleElevator());
 

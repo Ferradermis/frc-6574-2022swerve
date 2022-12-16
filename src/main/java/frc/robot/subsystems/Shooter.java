@@ -6,7 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
   
   public DigitalInput storageLimitSwitch = new DigitalInput(3);
 
-  public static double shooterSpeed = -7500;
+  public static double shooterSpeed = -775;
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -37,8 +37,7 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("LimitSwitch", storageLimitSwitch.get());
-    SmartDashboard.putNumber("Shooter Speed", shooterLeft.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("Right Shooter", shooterRight.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Shooter Speed", shooterRight.getSelectedSensorVelocity());
   }
 
   public void spinShooter() {
@@ -51,7 +50,7 @@ public class Shooter extends SubsystemBase {
 
   public void stop() {
     shooterLeft.set(0);
-    //shooterRight.set(0);
+    shooterRight.set(0);
   }
 
   public void stopShootProcess() {
@@ -68,11 +67,15 @@ public class Shooter extends SubsystemBase {
   }
  
   public void spinShooterClosedLoop(double velocity) {
-    shooterLeft.set(ControlMode.Velocity, velocity);
+    shooterRight.set(ControlMode.Velocity, velocity);
   }
 
   public void spinFrontStorage(double frontSpeed) {
     frontStorageRoller.set(-.75);
+  }
+
+  public void spitFrontStorage() {
+    frontStorageRoller.set(.85);
   }
 
   public void spinFrontStorageBackward (double frontSpeed) {
@@ -109,9 +112,9 @@ public class Shooter extends SubsystemBase {
       shooterRight.configFactoryDefault();
       frontStorageRoller.configFactoryDefault();
 
-      shooterRight.follow(shooterLeft);
+      shooterLeft.follow(shooterRight);
       shooterLeft.setNeutralMode(NeutralMode.Coast);
-      shooterLeft.configClosedloopRamp(.5, 0);
+      shooterRight.configClosedloopRamp(.5, 0);
       //shooterLeft.setSensorPhase(true);
       
       shooterRight.setNeutralMode(NeutralMode.Coast);
@@ -128,8 +131,8 @@ public class Shooter extends SubsystemBase {
       shooterLeft.config_kI(0, kI);
       shooterLeft.config_kD(0, kD);
   
-      //shooterLeft.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
-      //shooterRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
+      shooterLeft.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
+      shooterRight.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 20, 1));
   
       //shooterLeft.setStatusFramePeriod(StatusFrame.Status_1_General, 100);
       //shooterLeft.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 255);

@@ -4,10 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Swerve;
@@ -15,7 +13,7 @@ import frc.robot.subsystems.Swerve;
 
 public class LimelightAlign extends CommandBase {
   private Swerve s_Swerve;
-  private Translation2d translation;
+  //private Translation2d translation;
 
   public static double turnKP = .33;
   public static double simpleFF = .05; //CHANGE ASAP, GET DECENT VALUE
@@ -41,9 +39,8 @@ public class LimelightAlign extends CommandBase {
     
     double angleX = Limelight.getAngleX();
 
-    double yAxis = 0;
     double xAxis = (angleX * turnKP);
-    translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed); //Constants.Swerve.maxSpeed
+    
     SmartDashboard.putNumber("Angle Error Limelight", angleX * turnKP);
     if (Limelight.hasTarget()) {
       
